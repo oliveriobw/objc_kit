@@ -1,6 +1,6 @@
 # objc_kit
 
-Useful macros to simplify objective-c development. Logging and exceptions. 
+Useful macros to simplify objective-c development. Logging and exceptions. Compile with ENABLE_LOGGING in configurations where you want logging)
 
 ## Logging Examples:
 
