@@ -16,20 +16,25 @@ wg_catch
 ## Exception Examples with Blocks: 
  
 //A block may never get called if an exception is thrown in the  
-//function. Here the block (with a single bool argument) is  
+//function. Here the block (taking a single bool argument) is  
 //invoked with false if it throws:  
  
 wg_try  
 [obj some_method:my_block];  
 wg_catch_b(my_block,false)  
    
-//Here the block (with bool and int arguments) is invoked with   
+//Here the block (taking bool and int arguments) is invoked with   
 //false and 23 if it throws:    
 wg_try   
 [obj some_method:my_block];   
 wg_catch_b(my_block,false,23)   
- 
-//Here the block (with an NSException) is invoked with a code 22 and   
+    
+//wg_nserr creates an NSError instance. Usually requires copiuous typing.    
+//Here it's created with a code of -1, and an error message    
+wg_nserr(-1,@"my message");   
+  
+  
+//Here the block (taking an NSException) is invoked with a code 22 and   
 //some text if it throws:   
 wg_try   
 [obj some_method:my_block];   
