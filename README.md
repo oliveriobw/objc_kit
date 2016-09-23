@@ -33,7 +33,7 @@ wg_catch_b(my_block,false,23)
     
 //wg_nserr creates an NSError instance. Usually requires copiuous typing.    
 //Here it's created with a code of -1, and an error message    
-wg_nserr(-1,@"my message");   
+NSError* e = wg_nserr(-1,@"my message");   
   
   
 //Here the block (taking an NSException) is invoked with a code 22 and   
