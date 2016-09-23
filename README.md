@@ -1,6 +1,6 @@
 # objc_kit
 
-Useful macros to simplify objective-c development. Logging and exceptions. Compile with ENABLE_LOGGING in configurations where you want logging)
+Useful macros to simplify objective-c development. Logging and exceptions. Compile with ENABLE_LOGGING in configurations where you want logging
 
 ## Logging Examples:
 
@@ -16,9 +16,11 @@ wg_catch
 ## Exception Examples with Blocks: 
  
 //A block may never get called if an exception is thrown in the  
-//function. Here the block (taking a single bool argument) is  
+//function. These helpers ensure the block gets invoked after   
+//an exception is thrown.    
+  
+//Here the block (taking a single bool argument) is  
 //invoked with false if it throws:  
- 
 wg_try  
 [obj some_method:my_block];  
 wg_catch_b(my_block,false)  
