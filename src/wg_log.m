@@ -3,6 +3,8 @@
 //
 #import "wg_log.h"
 
+#ifdef ENABLE_LOGGING
+
 @implementation   WgLog
 
 + (void)trace : (NSString *)format, ...
@@ -15,3 +17,6 @@
 }
 
 @end
+
+#endif
+
