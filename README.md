@@ -1,6 +1,10 @@
 # objc_kit
 
-Useful macros to simplify objective-c development. Logging and exceptions. Compile with ENABLE_LOGGING in configurations where you want logging
+Useful macros to simplify objective-c development. Logging and exceptions.  
+  
+ NSLog(); is fine, but it's unconditional, and no-one wants that. Compile with ENABLE_LOGGING in configurations where you want logging and wg_log calls are switched on and off at build time. Can be easily tweaked to support different log levels, and persistance. 
+ 
+ Exceptions thrown from blocks are tricky to cope with - some simple macros to cleanly call your blocks when things go wrong.    
 
 ## Logging Examples:
 
@@ -40,7 +44,7 @@ NSError* e = wg_nserr(-1,@"my message");
 //some text if it throws:   
 wg_try   
 [obj some_method:my_block];   
-wg_catch_b(my_block,wg_nserr(22,@"something threw and exception"))   
+wg_catch_b(my_block,wg_nserr(22,@"something threw an exception"))   
 
 
 
