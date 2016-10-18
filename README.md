@@ -1,18 +1,24 @@
 # objc_kit
 
-Useful macros to simplify objective-c development. Logging and exceptions.  
+Useful macros to simplify objective-c development. Covers logging, exceptions, notifications, and so on.   
+   
+If Objective-C seems like a drain on all your resources, if you like succinct code, if you want to forget about all the intricacies of instatiating an NSString, if you'd rather focus on the interesting stuff, and if you don't get religeous about using preprocessor macros, then take a look. 
   
- NSLog(); is fine, but it's unconditional, and no-one wants that. Compile with ENABLE_LOGGING in configurations where you want logging and wg_log calls are switched on and off at build time. Can be easily tweaked to support different log levels, and persistance. 
  
- Exceptions thrown from blocks are tricky to cope with - some simple macros to cleanly call your blocks when things go wrong.    
-
 ## Logging Examples:
 
+NSLog(); is fine, but it's unconditional, and no-one wants that. Compile with  
+ENABLE_LOGGING in configurations where you want logging (eg: your DEBUG build)  
+and wg_log calls are switched on and off.   
+   
 wg_log(@"prints using NSLog internally");  
 wg_log(@"like a variadic printf as you'd expect %d %@ etc", 10, self);  
 
-## Exception Examples:
-
+## Exception Examples:  
+  
+Exceptions thrown from blocks are tricky to cope with - some simple macros to   
+cleanly call your blocks when things go wrong.      
+  
 wg_try   
 //.. some code likely to throw exceptions  
 wg_catch  
@@ -45,6 +51,13 @@ NSError* e = wg_nserr(-1,@"my message");
 wg_try   
 [obj some_method:my_block];   
 wg_catch_b(my_block,wg_nserr(22,@"something threw an exception"))   
+
+## String examples: 
+
+NSString* a = nstradd(some_nstring, @"- and another"); //concats together  
+NSString* b = nsstr(@"%d = %@", 1, some_string); //variadic string create   
+NSString* c = nstra("nsstring from a string literal");
+NSString* d = nstr8("nsstring from a utf8 string literal");
 
 
 
