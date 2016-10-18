@@ -8,13 +8,22 @@
 //change to own prefix
 #define wg_prefix          @"wglog"
 
-#define wg_basic(fmt,...) 	do{[WgLog trace: fmt,##__VA_ARGS__,nil];}while(0)
-#define wg_log(fmt,...)	    wg_basic(fmt,##__VA_ARGS__,nil)
-#define wg_logl         	wg_basic(@"%s:%d INF", __FUNCTION__, __LINE__)
-#define wg_err(n)         	wg_basic(@"%s:%d ERR: %@", __FUNCTION__, __LINE__,n)
+#define wg_log(fmt,...) 	        do{[WgLog trace:@"INF":  __FUNCTION__ : __LINE__ : fmt,##__VA_ARGS__,nil];}while(0)
+#define wg_warn(fmt,...) 	        do{[WgLog trace:@"WARN": __FUNCTION__ : __LINE__ : fmt,##__VA_ARGS__,nil];}while(0)
+#define wg_err(fmt,...) 	        do{[WgLog trace:@"ERR":  __FUNCTION__ : __LINE__ : fmt,##__VA_ARGS__,nil];}while(0)
+#define wg_basic(fmt,...)       	do{[WgLog trace: fmt,##__VA_ARGS__,nil];}while(0)
+#define wg_logl         	        do{[WgLog trace: __FUNCTION__ :__LINE__ ];}while(0)
+
+#ifdef VERBOSE_LOGGING
+    #define wg_verb(fmt,...) 	        do{[WgLog trace:@"VERB": __FUNCTION__ : __LINE__ : fmt,##__VA_ARGS__,nil];}while(0)
+#else
+    #define wg_verb(fmt,...)
+#endif
 
 @interface WgLog : NSObject
 + (void)trace:  (NSString *)format, ...  NS_REQUIRES_NIL_TERMINATION;
++ (void)trace:  (NSString *) preamble : (const char*) fnc : (int) line : (NSString *)format, ...  NS_REQUIRES_NIL_TERMINATION;
++ (void)trace:  (const char*) fnc : (int) line ;
 @end
 
 #else
